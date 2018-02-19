@@ -1,15 +1,15 @@
 #include <iostream>
 using namespace std;
 
+int dateFirst(int);
 void day();
 int date(int,int,int);
 
 int main() {
   int dateFirstDate, month = 1, year;
-  cout << "請輸入該年一月一號星期幾(請輸入阿拉伯數字)\n";
-  cin >> dateFirstDate;
   cout << "請輸入年份(西元,阿拉伯數字)\n";
   cin >> year;
+  dateFirstDate = dateFirst(year);
   
   for (int dayInput = 1; dayInput < 13; dayInput++) {
     day();
@@ -24,6 +24,10 @@ int main() {
   }
   
   return 0;
+}
+
+int dateFirst(int year) {
+  return (1 + (year - 1900) + (year - 1900) / 4 - (year - 1900) / 100 + year / 400 - 4) % 7;
 }
 
 void day() {
