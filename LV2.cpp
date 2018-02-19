@@ -15,7 +15,11 @@ int main() {
     day();
     for (int dateInput1 = 0; dateInput1 < 1; dateInput1++){
       dateFirstDate = date(month,dateFirstDate);
-      month++;
+      if (month == 12) {
+        month = 1;
+      } else {
+        month++;
+      }
     }
   }
   
@@ -79,6 +83,7 @@ int date(int month,int dateFirstDate) {
       spaceTotal = 15;
       dateInput3 = 2;
       break;
+    case 0:
     case 7:
       spaceTotal = 18;
       dateInput3 = 1;
