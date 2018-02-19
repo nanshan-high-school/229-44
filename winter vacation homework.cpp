@@ -2,19 +2,19 @@
 using namespace std;
 
 void day();
-int date(int,int);
+int date(int,int,int);
 
 int main() {
-  int dateFirstDate,month;
-  cout << "請輸入當月一號星期幾(請輸入阿拉伯數字)\n";
+  int dateFirstDate, month = 1, year;
+  cout << "請輸入該年一月一號星期幾(請輸入阿拉伯數字)\n";
   cin >> dateFirstDate;
-  cout << "請輸入月份(阿拉伯數字)\n";
-  cin >> month;
+  cout << "請輸入年份(西元,阿拉伯數字)\n";
+  cin >> year;
   
-  for (int dayInput = 0; dayInput < 2; dayInput++) {
+  for (int dayInput = 1; dayInput < 13; dayInput++) {
     day();
     for (int dateInput1 = 0; dateInput1 < 1; dateInput1++){
-      dateFirstDate = date(month,dateFirstDate);
+      dateFirstDate = date(month,dateFirstDate,year);
       month++;
     }
   }
@@ -28,7 +28,7 @@ void day() {
   return;
 }
 
-int date(int month,int dateFirstDate) {
+int date(int month,int dateFirstDate,int year) {
   int dateLimit;
   switch(month) {
     case 1:
@@ -47,7 +47,11 @@ int date(int month,int dateFirstDate) {
       dateLimit = 31;
       break;
     case 2:
-      dateLimit = 29;
+      if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+        dateLimit = 30;
+      } else {
+        dateLimit = 29;
+      }
       break;
     default:
       break;
