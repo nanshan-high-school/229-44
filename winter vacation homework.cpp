@@ -2,7 +2,7 @@
 using namespace std;
 
 void day();
-void date(int,int);
+int date(int,int);
 
 int main() {
   int dateFirstDate,month;
@@ -11,10 +11,11 @@ int main() {
   cout << "請輸入月份(阿拉伯數字)\n";
   cin >> month;
   
-  for (int dayInput = 0; dayInput < 1; dayInput++) {
+  for (int dayInput = 0; dayInput < 2; dayInput++) {
     day();
-    for (int dateInput1 = 0; dateInput1 < 1; dateInput1++) {
-      date(month,dateFirstDate);
+    for (int dateInput1 = 0; dateInput1 < 1; dateInput1++){
+      dateFirstDate = date(month,dateFirstDate);
+      month++;
     }
   }
   
@@ -27,7 +28,7 @@ void day() {
   return;
 }
 
-void date(int month,int dateFirstDate) {
+int date(int month,int dateFirstDate) {
   int dateLimit;
   switch(month) {
     case 1:
@@ -93,11 +94,15 @@ void date(int month,int dateFirstDate) {
   for (int dateInput2 = 1; dateInput2 < dateLimit; dateInput2++) {
     if (dateInput2 % 7 == dateInput3) {
       cout << dateInput2 << endl;
+    } else if (dateInput2 == dateLimit - 1) {
+      cout << dateInput2 << endl;
     } else if (dateInput2 > 9) {
       cout << dateInput2;
       for (int space = 1; space < 2; space++) {
         cout << " ";
       }
+    } else if (dateInput2 == dateLimit - 1) {
+      cout << dateInput2 << endl;
     } else {
       cout << dateInput2;
       for (int space = 1; space < 3; space++) {
@@ -106,5 +111,5 @@ void date(int month,int dateFirstDate) {
     }
   }
   
-  return;
+  return ((dateLimit - 1) % 7 + dateFirstDate) % 7;
 }
